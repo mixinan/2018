@@ -1,0 +1,69 @@
+<!doctype html>
+<head>
+	<title>截图测试</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="shortcut icon" href="../img/guo3.ico" type="image/x-icon">
+	<script src="js/jquery-1.11.3.js"></script>
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	<script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+	<style>
+		#view{background:#c0c0c0;}
+		#inp{width:80%; padding:20px;}
+		p{text-align:center;}
+	</style>
+</head>
+<body>
+	<h2><a href="./things/pinglun.php?id=49">评论</a></h2>
+	<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+	<p>
+		<textarea id="inp" rows="3" placeholder="输入你想写的话(每次输入占一行)"></textarea>
+	</p>
+	<p>
+		<button id="put" onclick="push()">提交</button>
+		<button id="put" onclick="$('#view').html('');">擦黑板</button>
+    </p>
+	<div id="view" style="position:relative;padding:28px;">
+		<h1>万码千钧</h1><h2>学如逆水行舟，<br>不进则退，主动出击！</h2>
+    </div>
+	<p>
+		<button onclick="pic()">截图</button><a></a>
+	</p>
+	<hr>
+	<div>
+		手机QQ浏览器貌似不支持<br>用手机自带浏览器试试(点击右上角“...”，用浏览器打开)
+	</div>
+	<script>
+	
+		function push(){
+			var str = $("#inp").val();
+			//console.log(str);
+			$("#view").append($("<h2 style='text-align:center;'>"+str+"</h2>"));
+			$("#inp").val("");
+		}
+	
+		function pic() {
+			if($("#from").length>0){  //表示底下有“技术支持”字样
+				//啥也不做
+			}else{
+				//增加“技术支持”字样
+				$("#view").append($("<p id='from' style='margin-top:30px;color:#ddd;'>技术支持 - 万码千钧</p>"));
+			}
+			
+			html2canvas(document.getElementById('view'), 
+					{
+						onrendered: function(canvas) {
+							var url = canvas.toDataURL();
+							console.log(url);
+							//下载图片
+							var download = $("a").attr("href", url).attr("download", "slogan.png");
+							download[0].click();
+						}
+					}
+			);
+			
+		}
+	</script>
+</body>
+
+</html>

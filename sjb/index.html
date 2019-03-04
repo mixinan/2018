@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>世界杯竞猜计算</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <h3>瑞士 VS 韩国</h3>
+    <label>赢率：
+        <input id="doubleWin" value="1.77" />
+    </label>
+    <br>
+    <label>平率：
+        <input id="doubleTie" value="3.06" />
+    </label>
+    <br>
+    <label>负率：
+        <input id="doubleLose" value="4.20" />
+    </label>
+    <br>
+    <br> 以上数据会跟随时间变化，请根据彩票平台数据自行修改
+    <br>
+    <button type="button" id="bt">如何下注保赚不亏？点击查询</button>
+    <hr>
+    <h3>下注</h3>
+    赢：
+    <input id="win" value="11" />
+    <br> 平：
+    <input id="tie" value="7" />
+    <br> 输：
+    <input id="lose" value="5" />
+    <button type="button" id="comp">计算</button>
+    <hr>
+    <p id="desc"></p>
+
+    <script type="text/javascript">
+        var bt = document.getElementById("bt");
+        var btC = document.getElementById("comp");
+        var desc = document.getElementById("desc");
+
+        //瑞士 VS 韩国，赢、平、负 对应的赔率
+        var ying;
+        var ping;
+        var fu;
+
+        //花费的总钱数
+        var totalMoney;
+
+        var html = "";
+
+        //点击计算按钮
+        btC.onclick = function () {
+            //各种率
+            ying = document.getElementById("doubleWin").value;
+            ping = document.getElementById("doubleTie").value;
+            fu = document.getElementById("doubleLose").value;
+            //各种注
+            var winNum = document.getElementById("win").value;
+            var tieNum = document.getElementById("tie").value;
+            var loseNum = document.getElementById("lose").value;
+
+            //打印从输入框获取的各种率
+            console.log(ying, ping, fu);
+            console.log(winNum, tieNum, loseNum);
+
+            //计算对应的注数
+            print(winNum, tieNum, loseNum);
+        }
+
+
+        //点击查询按钮
+        bt.onclick = function () {
+            //各种率
+            ying = document.getElementById("doubleWin").value;
+            ping = document.getElementById("doubleTie").value;
+            fu = document.getElementById("doubleLose").value;
+
+            //打印从输入框获取的各种率
+            console.log(ying, ping, fu);
+
+            //计算对应的注数
+            get();
+        }
+
+
+        //赢球的结果
+        function win(y, totalMoney) {
+            if (y == 0) {
+                var result = -1 * totalMoney;
+            } else {
+                var result = ying * 2 * y - totalMoney;
+            }
+            return result;
+        }
+
+        //平球的结果
+        function equal(p, totalMoney) {
+            if (p == 0) {
+                var result = -1 * totalMoney;
+            } else {
+                var result = ping * 2 * p - totalMoney;
+            }
+            return result;
+        }
+
+        //输球的结果
+        function lose(f, totalMoney) {
+            if (f == 0) {
+                var result = -1 * totalMoney;
+            } else {
+                var result = fu * 2 * f - totalMoney;
+            }
+            return result;
+        }
+
+
+	//打印不赔钱的结果
+        function print(y, p, f) {
+            var total = 2 * y + 2 * p + 2 * f;
+            html = "<h3>总共花费：" + total + " 元</h3>" +
+                "<br>买赢：" + y + " 注，若赢球，该项得到：" + ying * 2 * y + "<br> ----- 最终结果：" + win(y, total).toFixed(2) + "<br>" +
+                "<br>买平：" + p + " 注，若平球，该项得到：" + ping * 2 * p + "<br> ----- 最终结果：" + equal(p, total).toFixed(2) + "<br>" +
+                "<br>买输：" + f + " 注，若输球，该项得到：" + fu * 2 * f + "<br> ----- 最终结果：" + lose(f, total).toFixed(2) + "<br><br>" + html;
+            desc.innerHTML = "<button onClick='html=\"\";desc.innerHTML=html;'>清空</button>" + html;
+        }
+
+
+		
+	//每注遍历600次,查看有没有想要的结果
+        function get() {
+            for (var a = 0; a < 600; a++) {
+                for (var b = 0; b < 600; b++) {
+                    for (var c = 0; c < 600; c++) {
+			totalMoney = 2 * a + 2 * b + 2 * c;
+                        if (2 * ying * a - totalMoney < 0 || 2 * ping * b - totalMoney < 0 || 2 * fu * c - totalMoney < 0) {
+                            continue;
+                        } else {
+                            if (a + b + c >= 5) {
+                                console.log(a + "," + b + "," + c + " 肯定不赔钱！");
+                                print(a, b, c);
+                            }else if(a+b+c==0){
+				html = "<h3>想要绝对不赔？那就是不参与！没有绝对能赢的赌博。</h3>";
+				desc.innerHTML = html;
+			    }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

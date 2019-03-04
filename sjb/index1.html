@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>世界杯竞猜计算</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<h3>瑞士 VS 韩国</h3>
+		<label>赢率：<input id="doubleWin" value="1.82"/></label><br>
+		<label>平率：<input id="doubleTie" value="3"/></label><br>
+		<label>负率：<input id="doubleLose" value="4.05"/></label><br>以上数据不定，会跟随时间变化
+		<hr>
+		买赢注数：<input type="text" id="ying"  value="10"/><br>
+		买平注数：<input type="text" id="ping"  value="5"/><br>
+		买输注数：<input type="text" id="fu"  value="4"/>
+		
+		<button type="button" id="bt">查询</button>
+		
+		<p id="desc"></p>
+		
+		<script type="text/javascript">
+			var bt = document.getElementById("bt");
+			var yInput = document.getElementById("ying");
+			var pInput = document.getElementById("ping");
+			var fInput = document.getElementById("fu");
+			
+			var desc = document.getElementById("desc");
+			
+			
+			//瑞士 VS 韩国，赢、平、负 对应的赔率
+			var ying;
+			var ping;
+			var fu;
+			
+			
+			
+			//花费的总钱数
+			var totalMoney;
+			
+			bt.onclick=function(){
+				//各种率
+				ying = document.getElementById("doubleWin").value;
+				ping = document.getElementById("doubleTie").value;
+				fu = document.getElementById("doubleLose").value;
+				
+				//下注数量
+				var y=yInput.value?yInput.value:0;
+				var p=pInput.value?pInput.value:0;
+				var f=fInput.value?fInput.value:0;
+				console.log(y,p,f);
+				
+				start(y,p,f);
+			}
+			
+			
+			//赢球的结果
+			function win(y,totalMoney){
+				if(y>0){
+					var result = ying*2*y - totalMoney;
+				}else{
+					var result = -1 * totalMoney;
+				}
+				return result;
+			}
+			
+			//平球的结果
+			function equal(p,totalMoney){
+				if(p>0){
+					var result = ping*2*p - totalMoney;
+				}else{
+					var result = -1 * totalMoney;
+				}
+				return result;
+			}
+			
+			//输球的结果
+			function lose(f,totalMoney){
+				if(f>0){
+					var result = fu*2*f - totalMoney;
+				}else{
+					var result = -1 * totalMoney;
+				}
+				return result;
+			}
+			
+			
+			function start(y,p,f){
+				//总共花费的钱数
+				totalMoney = 2*y+2*p+2*f;
+				
+				if( win(y,totalMoney)>0 && equal(p,totalMoney)>0 && lose(f,totalMoney)>0 ){
+					alert("win:"+y+", equal:"+p+", lose:"+f+" 可以稳赚！");
+				}else if( win(y,totalMoney)==0 && equal(p,totalMoney)==0 && lose(f,totalMoney)==0 ){
+					desc.innerHTML="不参与？";
+					return;
+				}
+				
+				
+				var html = "总共花费："+totalMoney+" 元<br>"+
+					"<br>买赢花去："+2*y+" 元，若赢球，该项得到："+ ying*2*y +"<br> ----- 最终结果："+win(y,totalMoney).toFixed(2)+"<br>"+
+					"<br>买平花去："+2*p+" 元，若平球，该项得到："+ ping*2*p +"<br> ----- 最终结果："+equal(p,totalMoney).toFixed(2)+"<br>"+
+					"<br>买输花去："+2*f+" 元，若输球，该项得到："+ fu*2*f+"<br> ----- 最终结果："+lose(f,totalMoney).toFixed(2)+"<br><br>";
+
+				html += "怎样买不会亏钱，我还没思考怎么写代码……";
+				desc.innerHTML=html;
+			}
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>毽友群五周年庆</title>
+    <style>
+        nav{text-align: center;border-bottom: 1px solid gray}
+        #app{padding: 12px;}
+        ol>li{margin-top: 10px;}
+        #uname,#jname{font-size: 1.2em}
+        button{font-size: 1.2em}
+        #baoming,#baojiemu{margin: 18px 0; text-align: center}
+        #users>table,#jiemus>table{font-size: 10px;margin: 5px auto;width: 100%}
+        h2,h3{text-align: center}
+        footer{border-top: 1px solid gray;margin-top: 38px}
+        footer>p{text-align: center;}
+    </style>
+</head>
+<body>
+<!--导航-->
+<nav>
+    <h1>南京人毽人爱微信群成立五周年聚会</h1>
+    <h4>时间：2018-07-22 周日 &nbsp;下午 16:00 ～ 20:00</h4>
+    <h4>地址：南京财经大学旁“德顺楼大酒店”二楼</h4>
+</nav>
+<div id="app">
+    <div>
+        <h1 style="text-align: center">五周年庆典活动安排</h1>
+        <h2>一、活动报名</h2>
+        凡自愿参加本次活动者，请在群内或下方表格里报名，报名截止日期为7月20日
+        <div id="baoming">
+                <input id="uname" type="text" placeholder="报名请输入你的名字"/>
+                <button id="bt" disabled>提交</button>
+        </div>
+        <h3>已报名成员</h3>
+        <div id="users">
+            <!-- 用数据库填充-->
+        </div>
+        <h2>二、活动流程</h2>
+        <ol>
+            <li>五年历程回顾，精彩镜头回放</li>
+            <li>新五年展望</li>
+            <li>群友自编小节目表演</li>
+            <li>群友们自带物品交流</li>
+            <li>欢乐聚餐</li>
+            <li>活动结束</li>
+        </ol>
+        <h2>三、活动要求</h2>
+        <ol>
+            <li>每位参加活动的群友需带一件有使用或观赏功能，价值10元~50元的家庭多余物品，作为本次活动所设的群友物品交流物（注：一定是家里多余物品，最好是有完整包装。食品、化妆品除外。不建议另行购买）</li>
+            <li>小节目表演请自带伴奏带</li>
+            <li>就餐不过度饮酒，不相互劝酒</li>
+            <li>活动正值盛夏，请各位注意防暑及交通安全</li>
+            <li>有身体不适，不建议参加活动</li>
+            <li>请参加活动的群友准时出席</li>
+        </ol>
+        <h2 id="jiemu-title">四、节目报名</h2>
+        <div id="baojiemu">
+            <input id="jname" type="text" placeholder="请输入你的节目"/>
+            <button id="bt2" disabled>提交</button>
+        </div>
+        <h3>已报节目</h3>
+        <div id="jiemus">
+            <!-- 用数据库填充-->
+        </div>
+    </div>
+</div>
+<footer>
+    <p>@万码千钧</p>
+</footer>
+<script src="jquery.js"></script>
+<script src="jianzi.js"></script>
+<script src="jiemu.js"></script>
+</body>
+</html>

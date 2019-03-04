@@ -1,0 +1,69 @@
+ul.list{
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+    padding-top:20px;
+    background-color:#fff;
+    padding:10px;
+}
+ul.list>li{
+    width:92%;
+    margin-bottom:25px;
+    border:1px solid #ddd;
+    text-align:center;
+    box-sizing:border-box;
+    padding:18px;
+}
+ul.list>li:hover{
+    box-shadow:0 0 5px #ddd;
+}
+
+ul.list>li>p{
+    text-align:left;
+	font-size:2rem;
+}
+
+ul.list>li span{
+	font-size:0.8rem;
+    color:#808080;
+}
+
+ul.list>li>p>a{
+    color:red;
+}
+ul.list>li>p{
+    margin-bottom:15px;
+}
+
+
+
+/*
+	页码框
+*/
+
+.pages{
+    padding:10px 55px 0 0;
+    text-align:right;
+    background:linear-gradient(to top ,#c5c4c5, #f8f8f8);
+    height:88px;
+    line-height:80px;
+}
+.pages a{
+    padding:10px 28px;
+    border:1px solid #ddd;
+    border-radius:4px;
+    color:#0aa1ed;
+	margin: 0 3px;
+	font-size: 1.3rem;
+}
+.pages a.current{
+    border-color:#0aa1ed;
+    background:#0aa1ed;
+    color:#fff;
+}
+.pages a.disabled{
+    color:#bfbfbf;
+    background:#f2f2f2;
+    border:1px solid #bfbfbf;
+	cursor:default;
+}

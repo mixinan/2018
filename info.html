@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "Content-type: text/html"
+echo ""
+
+ifconfig eth0 | awk '/netmask/{print "IP:"$2}'
+ifconfig eth0 | awk '/RX p/{print "流量:"$5}'
+df | awk '/\/$/{print "根分区："$4}'
+free | awk '/Mem/{print "内存剩余:"$NF}'

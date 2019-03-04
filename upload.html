@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>上传文件到服务器</title>
+	<meta name="Keywords" content="万码千钧"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta name="Description" content="万码千钧 -- 上传"/>
+	<link rel="shortcut icon" href="./img/guo3.ico" type="image/x-icon">
+	<style>
+		#container{width:88%;margin:20px auto;}
+		.file-box{ position:relative; margin:10px auto; } 
+		.txt{ 
+			height:50px; 
+			border:1px solid #cdcdcd; 
+			width:100px;
+			box-sizing:border-box;} 
+		.btn{ 
+			background-color:#FFF; 
+			border:1px solid #CDCDCD;
+			height:50px; 
+			width:100px;
+			box-sizing:border-box;} 
+		.file{ 
+			position:absolute; 
+			top:0; 
+			left:0; 
+			height:50px; 
+			filter:alpha(opacity:0);
+			opacity: 0;
+			width:205px } 
+			
+	</style>
+</head>
+<body>
+<!--
+	<div>
+		<form action="upload.php" method="post" enctype="multipart/form-data">
+			<input type="file" name="f" id="select_box"> <br>
+			<input type="submit">
+		</form>
+	</div>
+	-->
+	<div id="container">
+		<div class="file-box"> 
+			<form action="upload.php" method="post" enctype="multipart/form-data"> 
+				<input type='text' name='textfield' id='textfield' class='txt' /> 
+				<input type='button' class='btn' value='浏览...' /> 
+				<input type="file" name="f" class="file" onchange="document.getElementById('textfield').value=this.value" /> 
+				<br><br>
+				<input type="submit" name="submit" class="btn" value="上传" /> 
+			</form> 
+		</div> 
+	</div>
+	
+	<p>上传之前可以把文件名改为英文，因为文件名里的汉字，在页面显示时可能出现乱码
+	</p>
+	
+	
+</body>
+</html>

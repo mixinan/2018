@@ -1,0 +1,7 @@
+div.header-main{
+	text-align:center;
+	background:linear-gradient(to bottom ,#c5c4c5, #f8f8f8);
+	height: 120px;
+	line-height: 120px;
+	font-size:2.7rem;
+}

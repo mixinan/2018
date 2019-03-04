@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+		<script src="jquery-1.11.3.js"></script>
+		<title>导出表单内容到文件</title>
+	</head>
+
+	<body>
+		<input type="text" id="inputName" placeholder="输入姓名"/><br>
+		<input type="text" id="inputPhone" placeholder="输入手机号"/><br>
+		<button id="bt">提交</button>
+
+		<script type="text/javascript">
+			var bt = document.getElementById("bt");
+			
+			bt.onclick=function(){
+				var u_name = $("#inputName").val();
+				var u_phone = $("#inputPhone").val();
+				console.log(u_name+","+u_phone);
+				$.ajax({
+						url:"file.php",
+						type:"post",
+						async:true,
+						data:{
+							uname:u_name,
+							uphone:u_phone
+						},
+						success:function(data){
+							//提交成功后，清空表单
+							$("#inputName").val("");
+							$("#inputPhone").val("");
+							alert(data);
+						},
+						error:function(data){
+							
+						}
+					});
+
+			}
+		</script>
+
+	</body>
+
+</html>
