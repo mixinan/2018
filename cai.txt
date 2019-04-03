@@ -1,0 +1,39 @@
+a=`echo $[RANDOM%100]`
+count=0
+
+# 这是一个死循环,如果猜不中,就一直猜
+# 直到猜对了,才停止这个循环
+
+while :
+do
+
+# 每多猜一次,次数+1
+let count=count+1
+
+# 提示用户输入,并且用b来接收用户输入的数字
+read -p  "请猜一个0-99之间的数字:" b
+
+# 如果b大于a,提示"猜大了"
+if [ $b -gt $a ];then
+	echo "猜大了!"
+elif [ $b -lt $a ];then 
+	echo "猜小了"
+elif [ $b -eq $a ];then
+	echo "恭喜,猜对了"
+	echo "一共猜了$count次"
+
+	if [ $count -ge 10 ];then
+		echo "太笨了,猜了这么多次!"
+	fi
+	
+	if [ $count -le 5 ];then
+		echo "真厉害!"
+		read -p "敢问大侠尊姓大名:" name
+		echo $name >> hero.txt
+	fi
+
+break
+fi
+
+
+done

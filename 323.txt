@@ -1,0 +1,67 @@
+未列出
+用户：root
+密码：teacher.com
+
+=======================
+
+ls  列出文件夹里的内容
+
+clear  清理、清除 （ctrl + L）
+
+date   时间日期
+
+cal    日历（calendar）
+		默认显示当前月份的日历
+		
+cal  年份
+		显示这一年的日历
+
+cal  月份   年份
+		显示某年某月的日历
+		
+============================
+		
+文件
+	  创建  touch  323.txt
+	  
+	  删除  rm   323.txt
+	  (remove 移除、移走)
+	  
+
+文件夹
+	 创建  mkdir  323
+		(make  directory)
+		 新建    文件夹
+		   mkdir  324  325  326
+	 
+	 删除  rm   -rf  323
+			f  （force 强制地）
+			r  （recursive 递归地）
+			
+			
+tab   自动补全命令或文件名字
+		touch  
+		tou(tab)
+		
+		mkdir
+		mk(tab)
+		
+man 说明书（manual 手册、说明书）
+		man  ls
+		
+		
+==============================
+郭兴楠
+微信：gxingnan
+
+
+
+
+
+
+
+
+
+		
+
+

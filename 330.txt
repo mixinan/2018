@@ -1,0 +1,212 @@
+CSS
+	网页样式
+	层叠样式表(英文全称：Cascading Style Sheets)
+	
+	常见的样式：
+		样式:值;
+		color:red;
+		background:blue;
+		text-shadow: 2px     2px      3px     red;
+		          横向偏移距离
+				          纵向偏移距离
+						           影子长度
+								           影子颜色
+		border: 1px   solid  red;
+			  边框宽度
+					边框样式
+					       边框颜色
+						   
+		font-size: 30px;
+		
+		
+		颜色   color
+		背景颜色 background
+		文字阴影 text-shadow
+		字体大小 font-size
+
+========================================
+	
+	内联样式
+		<h1 style="color:red;">通知</h1>
+		
+	内部样式
+		在head标记里，添加一个<style></style>标记
+		把所有的CSS样式，都写在style标记里
+			<style>
+				选择器{
+					样式1:值;
+					样式2:值;
+					....
+				}
+				
+				标记选择器
+				
+				h1{
+					color:red;
+				}
+				
+				p{
+					background:blue;
+				}
+				
+				
+				id选择器
+				
+				<h1 id="a1">测试</h1>
+				
+				#a1{
+					color:yellow;
+				}
+				
+				
+				
+				class选择器
+				
+				<h1 class="boy">测试</h1>
+				<p class="boy">段落</p>
+				
+				
+				
+				.boy{
+					color:green;
+				}
+				
+				
+				
+				后代选择器
+				子代选择器
+				兄弟选择器	
+				...
+				
+			</style>
+	
+	
+===================================
+	
+	外部样式
+		新建一个xx.css文件
+		把所有的样式写在该文件里
+		
+		在xx.html文件里：
+			在<head></head>标记里，增加<link/>进行和xx.css关联
+			<link rel="stylesheet" href="xx.css">			
+			
+==============================
+颜色
+	
+	英文单词：red  blue  green  yellow orange white
+			black  purple  gray
+			
+			
+	rgb： red   green  blue
+		
+		3个数字，取值范围：0~255
+		rgb(188,200,55)
+		
+		rgb(0,0,0)       黑色
+		rgb(255,255,255) 白色
+		
+		
+		alpha 透明度 范围：0~1
+		rgba(15,20,33,0.5)
+
+=====================================
+	
+	二进制
+		01
+	
+	十进制数字
+		0123456789
+	
+	十六进制
+		0123456789abcdef
+		
+		#三个"十六进制数字"
+		
+			#fa5
+			#0f0
+			#00f
+		
+			#000  黑
+			#fff  白
+		
+		#六个"十六进制数字"
+			#c0c0c0
+
+
+=================================
+尺寸
+	外边距
+		margin: 20px;   四周的外边距
+		
+		margin-left: 10px;   左外边距
+		margin-right: 10px;  右外边距
+		margin-top: 20px;
+		margin-bottom: 20px;
+		
+	内边距 
+		padding: 20px;  四周的内边距
+		
+		padding-left:10px;   左内边距
+		padding-right:10px;  右内边距
+		padding-top:10px;    上内边距
+		padding-bottom:10px; 下内边距
+		
+		
+圆角
+		border-radius: 8px;
+		
+		
+宽、高
+		width: 200px;
+		height: 200px;		
+		
+=============================
+注释
+	html的注释
+	<!--
+		注释内容
+	-->
+	
+	
+	CSS的注释
+	/*
+		注释内容
+	*/
+	
+================================
+
+块级标记、行内标记	
+
+常见的块级标记：p   h1~h6  div  hr  ... ul
+
+常见的行内标记：b i u a img ...
+			
+================================
+			
+	文本对齐
+		text-align: center;
+		
+		left
+		center
+		right
+
+==============================
+	
+	鼠标样式
+		cursor: 光标样式;
+		
+		pointer    手指
+		wait       等待
+		help       帮助
+		crosshair  十字
+		text       文本
+		move       移动
+			
+			
+			
+		
+	
+	
+	
+	
