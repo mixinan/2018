@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>万码千钧</title>
+	<meta name="Keywords" content="万码千钧"/>
+	<meta name="Description" content="郭兴楠的个人主页。"/>
+	<link rel="shortcut icon" href="img/guo3.ico" type="image/x-icon">
+    <style>
+        body {margin: 0;text-align: center}
+        h1 {padding: 20px 0;text-align: center;margin: 0 0 15px 0;background: linear-gradient(to bottom,#fff,#999 96%, #ddd);letter-spacing:5px;cursor:default;}
+        h1>span{letter-spacing: 0;}
+        #blackboard {width: 80%;min-height: 300px;margin: 20px auto;line-height: 300px;
+            font-size: 200px;text-shadow: 3px 2px 6px gray;}
+        #thisIndex {display: inline-block;width: 30px;font-weight: bold;
+            color: #ff2a00;padding: 0 5px;}
+        #thisTime {display: inline-block;width: 30px;padding: 0 5px;}
+        #info {font-size: 30px;padding: 0;margin: 0;}
+        #blackboard > div {font-size: 80px;text-shadow: 3px 2px 5px gray;}
+        #bt {font-size: 30px;border-radius: 10px;animation: huxi 2s linear infinite alternate;}
+
+        @keyframes huxi{
+            from {background-color: gray; padding:10px 20px; }
+            to {background-color: cornflowerblue;padding:10px 25px;}
+        }
+		
+		footer{
+			position:absolute;
+			bottom:0;
+			height:82px;
+			width:100%;
+			background:#c0c0c0;
+		}
+		
+		footer>a{
+			line-height:82px;
+			text-decoration:none;
+			font-size:28px;
+			margin: 0 38px;
+			color: #FFFFFF;
+			text-shadow:1px 1px 1px #000;
+		}
+		
+		footer>a:hover{
+			color:red;
+		}
+    </style>
+</head>
+<body>
+<h1>C++英语词汇量<span>PK</span></h1>
+
+<p id="info" style="display: none">第 <span id="thisIndex">1</span> 题 - 剩余<span id="thisTime">5</span>s</p>
+<div id="blackboard">
+    <div>天下武功 唯快不破</div>
+</div>
+<p id="tip" style="text-align: center;display: none;">
+    可通过 <i>F12 - Console - 右键“Sava as...”</i>导出本次题目内容<br/><br/>
+    <a href="http://weibo.com/hejinfriend" target="_blank">微博</a>&nbsp;&nbsp;
+    <a href="tencent://Message/?Uin=1503924553" title="点击聊一聊">作者-万码千钧</a>&nbsp;&nbsp;
+    <a href="http://guoxingnan.cc" target="_blank">建议</a>
+</p>
+<button id="bt">开始</button>
+<script>
+    var arr = ["value", "listen", "bind", "fork", "socket",
+        "pstree", "random", "ifconfig", "srand", "break",
+        "thread", "pop", "push", "mkdir", "remove",
+        "font", "printf", "return", "stack", "strlen",
+        "clear", "scanf", "template", "const", "node",
+        "database", "table", "document", "false", "write",
+        "include", "struct", "float", "function", "gcc",
+        "exit", "join", "cancel", "designer", "string",
+        "date", "class", "chmod", "strcpy", "read",
+        "insert", "delete", "update", "malloc", "sizeof"];
+
+    //初始值：题目序号，题目总数，剩余时间
+    var idx = 1, all = arr.length, i = 5;
+    //还未结束？
+    var unFinish = true;
+    console.log('共 '+all+' 题');
+    //定时器序号
+    var timer;
+
+    var blackboard = document.getElementById('blackboard');
+    var info = document.getElementById('info');
+    var thisIndex = document.getElementById('thisIndex');
+    var thisTime = document.getElementById('thisTime');
+    var bt = document.getElementById('bt');
+
+    bt.addEventListener('click', function () {
+        info.style.display = "block";
+        bt.style.display = "none";
+        go();
+        timer = setInterval(go, 1000);
+    });
+
+    //定时器里执行的方法
+    function go() {
+        if(i==5){
+            thisIndex.innerHTML = idx;
+            var randomNum = parseInt(Math.random() * arr.length);
+            var word = arr[randomNum];
+            arr.splice(randomNum, 1);
+            //根据是否结束，在控制台打印不同内容
+            unFinish = idx<=all;
+            console.log( unFinish ? (idx+" : "+word) : '答题结束！');
+
+            if (unFinish) {
+                blackboard.innerHTML = word;
+            } else {
+                blackboard.innerHTML = "没了";
+                info.style.display = "none";
+                clearInterval(timer);  //清除定时器
+                document.querySelector("#tip").style.display = "block";
+            }
+            idx++;
+        }
+        thisTime.innerHTML = i;
+        i--;
+        if(i==0) i=5;
+    }
+</script>
+	<footer>
+		<a href="./timeline.html">时间机器</a>
+		<a href="./">知识列表</a>
+		<a href="../download/">下载</a>
+		<a href="https://weibo.com/hejinfriend" title="万码千钧">微博</a>
+		<a href="http://www.douyu.com/mixinan" title="万码千钧Show">斗鱼</a>
+	</footer>
+</body>
+</html>

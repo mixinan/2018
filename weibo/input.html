@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>编程段子·投稿</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="Keywords" content="万码千钧,段子,程序员,编程段子"/>
+		<meta name="Description" content="万码千钧-编程段子投稿。"/>
+		<link rel="shortcut icon" href="../img/guo3.ico" type="image/x-icon">
+		<script src="jquery-1.11.3.js"></script>
+		<style type="text/css">
+			body{margin:0; padding:0;}
+			
+			a{text-decoration:none;}
+			
+			header{
+				padding-top:1px;
+				padding-left:50px;
+			}
+			div#input_container{
+				width:68%;
+				margin: 0 auto;
+				padding-bottom:50px;
+			}
+			
+			textarea#in{
+				width:98%;
+				padding:10px;
+				border-radius:8px;
+			}
+			
+			button{
+				font-size:16px;
+				padding:8px;
+				border-radius:6px;
+				background-color:#c0c0c0;
+			}
+			
+			div#text_length{
+				text-align:right;
+				padding-right:13px;
+			}
+			
+			div#button_list{
+				display:flex;
+				justify-content:space-around;
+			}
+			
+			
+			footer{
+				margin-top:10px;
+				position:relative;
+				bottom:0;
+				width:100%;
+				background-color:rgba(192,192,192,0.1);
+			}
+			
+			div.qrcode{
+				display:flex;
+				justify-content:space-around;
+				padding:8px 0 3px 0;
+			}
+			
+			div.qrcode>p, div.qrcode>ul{
+				margin:0;
+				padding:0;
+				list-style:none;
+			}
+			
+			div.qrcode li{
+				line-height:25px;
+			}
+			
+			
+			@media screen and (min-width: 888px){
+				div.content, div.qrcode{
+					width:58%;
+					height:100%;
+					margin-left:auto;
+					margin-right:auto;
+					background-color: rgba(192,192,192,0.1);
+				}
+				
+				footer{
+					background-color: #fff;
+				}
+				
+			
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div class="content">
+			<header>
+				<h2><a href="../"><img src="../img/logo.png"></a></h2>
+			</header>
+			<div id="input_container">
+				<div id="text_length"><span id="num">0</span>/200</div>
+				<textarea name="text" id="in" placeholder="讲述一个编程段子" rows="5" maxlength="200" onkeyup="wordStatic(this);"></textarea>
+				 
+				<div id="button_list">
+					<button onclick="javascript:location.href='../fenye'">列 表</button>
+					<button onclick="javascript:location.href='../upload.html'">上 传</button>
+					<button id="random" onclick="getRandom()">随 机</button>
+					<button id="commit">提 交</button>
+				</div>
+				<p id="show"></p>
+			</div>
+		</div>
+		
+		<!--
+			底部
+		
+		<footer>
+			<div class="qrcode">
+				<p><img src="../img/tougao.png" width="100px;"></p> 
+				<ul>
+					<li>扫码投稿</li>
+					<li>早睡早起</li>
+					<li>多喝热水</li>
+					<li>重启一下</li>
+				</ul>
+				<ul>
+					<li>阿弥陀佛</li>
+					<li>要穿西装</li>
+					<li>早晚刷牙</li>
+					<li>开始减肥</li>
+				</ul>
+			</div>
+		</footer>
+		-->
+		
+		<script src="common.js"></script>
+		<script>
+		
+			function getRandom(){
+				var xhr = createXhr();
+				xhr.open("get","random.php",true);
+				xhr.onreadystatechange=function(){
+					if(xhr.readyState==4 && xhr.status==200){
+						jQuery('#show').html("<div style='height:200px; margin-top:38px;'>"+xhr.responseText+"</div>");
+					}
+				}
+				xhr.send(null);
+			}
+		
+			function wordStatic(textarea) {
+        		// 获取要显示已经输入字数文本框对象<span>
+        		var $count = jQuery('#num'); 
+        		if ($count && textarea) {
+            		// 获取输入框输入内容长度并更新到界面 
+            		var value = textarea.value; 
+					//console.log(value);
+            		// 将换行符不计算为单词数 
+            		value = value.replace(/\n|\r/gi,""); 
+            		// 更新计数 
+            		$count.text(value.length); 
+        		}
+    		}
+		
+			var $inp = jQuery("#in");
+			//var button = $("commit");
+			jQuery("#commit").click(function(){
+				//获取表单里的字符串
+				var weibo_text = $inp.val();
+				//alert(weibo_text);
+				if(isnull(weibo_text)){
+					alert("你先输点东西吧...");
+					$inp.val("");
+					wordStatic($inp[0]);
+					return;
+				}
+				push(weibo_text);
+			});
+			
+			function push(text){
+				//1.创建xhr
+			   var xhr=createXhr();
+			   //2.创建请求
+			   xhr.open("post","push.php",true);
+			   //3.设置回调函数
+			   xhr.onreadystatechange=function(){
+					if(xhr.readyState==4&&xhr.status==200){
+						var res = xhr.responseText;
+						
+						if("ok"==res){
+							location.href="../fenye";
+						}else{
+							jQuery("#show").html("提交失败！");
+						}
+						
+						
+				  }
+			   
+			   }
+			   //增加：更改请求消息头
+			   xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+			   var msg="text="+text;
+			   //console.log(msg);
+			   xhr.send(msg);
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>

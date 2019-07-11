@@ -1,0 +1,340 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<script src="jquery-1.11.3.js"></script>
+        <title>时间机器</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="Keywords" content="万码千钧"/>
+		<meta name="Description" content="郭兴楠的个人主页 -- 大事记。"/>
+		<link rel="shortcut icon" href="../img/guo3.ico" type="image/x-icon">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            i {
+                font-style: normal;
+            }
+
+            ul,
+            li, 
+            dl,
+            ol{
+                list-style: none;
+            }
+
+            #LoutiNav {
+                border: 1px solid gray;
+                width: 45px;
+                position: fixed;
+                top: 10%;
+                left: 30px;
+                display: none;
+            }
+
+            #LoutiNav li {
+                width: 45px;
+                height: 30px;
+                border-bottom: 1px solid gray;
+                line-height: 30px;
+                text-align: center;
+                cursor: pointer;
+            }
+
+            #LoutiNav span {
+                display: none;
+            }
+
+            #LoutiNav .active {
+                background: white;
+                color: darkred;
+            }
+
+            #LoutiNav li:hover span {
+                display: block;
+                font-size: 12px;
+                background: darkred;
+                color: white;
+            }
+
+            #LoutiNav li:hover i {
+                display: none;
+            }
+
+            #goTop {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                background: gray;
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                cursor: pointer;
+                border-radius: 5px;
+                display: none;
+            }
+
+            #goTop:hover {
+                background: darkred;
+                color: white;
+            }
+
+            #goTop:hover span {
+                display: block;
+            }
+
+
+            #header {
+                height: 180px;
+                background: palegoldenrod;
+                text-align: center;
+                line-height: 180px;
+                font-size: 3rem;
+            }
+
+            .louceng {
+                text-align: center;
+				padding: 38px 0;
+            }
+			
+			h1.v_year{
+				margin-bottom:30px;
+			}
+			
+			h3.v_month{
+				margin:38px 0 16px 0;
+			}
+			
+			h3.v_month:before,h3.v_month:after{content:" - "; color:rgba(55,55,55,0.2);}
+			
+			.todolist{color: #C0C0C0; text-align:center;}
+			
+        </style>
+    </head>
+
+    <body>
+        <ul id="LoutiNav">
+            <li class="active"><i>2018</i><span>2018</span></li>
+            <li><i>2017</i><span>2017</span></li>
+            <li><i>2016</i><span>2016</span></li>
+            <li><i>2015</i><span>2015</span></li>
+			<li style="border-bottom: none;"><i>2011</i><span>2011</span></li>
+        </ul>
+		
+		
+        <div id="goTop">
+            Top
+        </div>
+		
+		
+        <div id="header">时 间 机 器</div>
+		
+        <div id="main">
+            <div class="louceng"  style="background: #787811;">
+				<div class="year_block"><a name="a2018"></a>
+					<h1 class="v_year">2018</h1>
+					<div class="month_block">
+						<h3 class="v_month">3月</h3>
+						<div class="content">
+							<p class="todolist">读完《货币战争》</p>
+							<p>27-29日，C++训练营</p>
+							<p>23日，第一次在海底捞吃饭</p>
+							<p>22日，吴杰帮我找了新住处</p>
+							<p>17日，剪了头发</p>
+							<p>16日，第一次装Linux系统</p>
+							<p>8日，家里新添一成员</p>
+							<p>7日，第一次拆装内存条</p>
+						</div>
+					</div>
+					
+					<div class="month_block">
+						<h3 class="v_month">2月</h3>
+						<div class="content">
+							<p>2月21日，飞到南京</p>
+							<p>明显发现自己肚子上有了赘肉</p>
+							<p>第一次主动买西装、衬衫、皮鞋</p>
+							<p>2月12日乘火车回家。19小时硬座</p>
+						</div>
+					</div>
+					
+					<div class="month_block">
+						<h3 class="v_month">1月</h3>
+						<div class="content">
+							<p>年会表演《宇宙牌香烟》,领奖</p>
+						</div>
+					</div>
+					
+					<div class="month_block">
+						<h3 class="v_month">To Do List</h3>
+						<div class="content todolist">
+							<p>交一个牙医朋友</p>
+							<p>早、晚都刷牙5分钟</p>
+							<p>买一辆车</p>
+							<p>体重调整至65kg</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+            <div class="louceng" style="background:#c0c0c0;">
+			
+				<div class="year_block"><a name="a2017"></a>
+					<h1 class="v_year">2017</h1>
+					<div class="month_block">
+						<h3 class="v_month">11月</h3>
+						<div class="content">
+							<p>CSD1711开班</p>
+							<p>换到常府街上班</p>
+						</div>
+					</div>			
+				</div>
+			</div>
+          
+	  	    <div class="louceng" style="background: peru;">
+				<div class="year_block"><a name="a2016"></a>
+					<h1 class="v_year">2016</h1>
+					<div class="month_block">
+						<h3 class="v_month">12月</h3>
+						<div class="content">
+							<p>第一次招聘</p>
+						</div>
+					</div>
+					<div class="month_block">
+						<h3 class="v_month">11月</h3>
+						<div class="content">
+							<p>WEB1611开班</p>
+						</div>
+					</div>
+					<div class="month_block">
+						<h3 class="v_month">10月</h3>
+						<div class="content">
+							<p>参加区域品保培训并演讲</p>
+						</div>
+					</div>
+					<div class="month_block">
+						<h3 class="v_month">3月</h3>
+						<div class="content">
+							<p>GSD1603开班</p>
+						</div>
+					</div>
+					<div class="month_block">
+						<h3 class="v_month">2月</h3>
+						<div class="content">
+							<p>第一次到南京</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+            <div class="louceng"  style="background: #90a8a5;">
+					<div class="year_block"><a name="a2015"></a>
+					<h1 class="v_year">2015</h1>
+					<div class="month_block">
+						<h3 class="v_month">11月</h3>
+						<div class="content">
+							<p>借了些钱</p>
+						</div>
+					</div>
+					<div class="month_block">
+						<h3 class="v_month">10月</h3>
+						<div class="content">
+							<p>去了北京</p>
+						</div>
+					</div>
+					<div class="month_block">
+						<h3 class="v_month">7月</h3>
+						<div class="content">
+							<p>有了创业做馅饼的念头</p>
+							<p>踢毽技术迅猛增长</p>
+						</div>
+					</div>
+					<div class="month_block">
+						<h3 class="v_month">6月</h3>
+						<div class="content">
+							<p>13日，第一次跑步10公里</p>
+						</div>
+					</div>
+					<div class="month_block">
+						<h3 class="v_month">3月</h3>
+						<div class="content">
+							<p>第一次接触保险</p>
+							<p>到了运城</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="louceng" style="background: #c0c0c0;">
+				<div class="year_block"><a name="a2011"></a>
+					<h1 class="v_year">2011</h1>
+					<div class="month_block">
+						<h3 class="v_month">8月</h3>
+						<div class="content">
+							<p>学会做饭</p>
+						</div>
+					</div>
+					<div class="month_block">
+						<h3 class="v_month">7月</h3>
+						<div class="content">
+							<p>进入股票交易行业</p>
+							<p>大学毕业</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		
+        <script>
+		
+            var oNav = $('#LoutiNav'); //导航容器
+            var aNav = oNav.find('li'); //导航item
+            var aDiv = $('#main .louceng'); //楼层们
+            var oTop = $('#goTop'); //回到顶部 
+			
+            $(window).scroll(function() {
+                    //可视窗口高度
+                    var winH = $(window).height();
+                    //滚动过距离
+                    var iTop = $(window).scrollTop();
+
+                    if(iTop >= $("#header").height()) {
+                        oNav.fadeIn();
+                        oTop.fadeIn();
+                        //楼层指示灯的样式改变
+                        aDiv.each(function() {
+                            if(winH + iTop - $(this).offset().top > winH / 2) {
+                                aNav.removeClass('active');
+                                aNav.eq($(this).index()).addClass('active');
+                            }
+                        })
+                    } else {
+                        oNav.fadeOut();
+                        oTop.fadeOut();
+                    }
+                })
+				
+				
+            //点击回到当前楼层
+            aNav.click(function() {
+                var currentDivTop = aDiv.eq($(this).index()).offset().top;
+                $('body,html').animate({
+                    "scrollTop": currentDivTop
+                }, 500);
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+			
+			
+            //回到顶部
+            oTop.click(function() {
+                $('body,html').animate({
+                    "scrollTop": 0
+                }, 500)
+            })
+        </script>
+    </body>
+</html>

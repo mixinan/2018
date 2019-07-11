@@ -1,0 +1,342 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>万码千钧</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="Keywords" content="万码千钧"/>
+		<meta name="Description" content="郭兴楠的个人主页。"/>
+		<!--20秒自动刷新一次-->
+		<!--<meta http-equiv="refresh" content="20">-->
+		<script src="jquery-1.11.3.js"></script>
+		<link rel="shortcut icon" href="../img/guo3.ico" type="image/x-icon">
+		
+		<style type="text/css">
+			
+			html,body,ul,li{margin: 0; padding:0;}		
+
+
+			/*提示有新内容*/
+			
+			#new_pl{
+				text-align:center;
+				font-size:1rem;
+				background:#C6EC50;
+				margin:-8px 0 0 0;
+				padding:0;
+			}
+			#new_pl>a{
+				text-decoration:none;
+				color:blue;
+				cursor:pointer;
+			}		
+
+		
+			
+
+			div.knowledge{
+				margin: 0 auto;
+				width:66%;
+				height:100%;
+			}
+			
+			@keyframes huxi{
+				from {background-color: rgb(204,204,204); padding:8px 12px; }
+				to {background-color: rgb(243,243,251); padding:8px 15px;}
+			}
+			
+			.knowledge>h3{margin:0; text-align:center;}
+			.knowledge>h3>button{
+				border-radius:12px;
+				font-size:1.2rem;
+				animation:huxi 2.5s linear infinite alternate;
+			}
+			
+
+		
+			/*微博 item 的样式*/
+			
+			div.weibo_item{
+				position:relative;
+				margin-bottom:39px;
+			}
+			
+			p.weibo_text{
+				margin: 26px 18px 0 35px;
+				font-size:1rem;
+			}
+			
+			span.uid{
+				position:absolute;
+				top:0;
+				left:8px;
+				color: rgba(55,55,55,0.2);
+				font-size:1rem;
+			}
+			
+			span.time{
+				position:absolute;
+				color: rgba(55,55,55,0.3);
+				font-size:0.6rem;
+				right:23px;
+				bottom:-13px;
+			}
+			
+
+			a{
+				text-decoration:none;
+				color:Red;
+				text-shadow:1px 1px 1px #c0c0c0;
+			}
+			
+			a:hover{
+				color:blue;
+			}
+			
+			@media screen and (max-width: 888px) {
+				div.timeline{display:none;}
+				div.knowledge{
+					width:100%;
+					position:relative;
+					left:0;
+				}
+			
+			}
+
+			
+			
+			
+			div.page_box{
+				text-align:right;
+				margin: 10px 30px 30px 0;
+			}
+			
+			
+			/*
+				搜索模块
+			*/
+			
+			p.search_box{
+				text-align:center;
+			}
+			
+			
+		footer{
+			height:100px;
+			width:100%;
+			background:#c0c0c0;
+			display:flex;
+			justify-content:space-around;
+		}
+		
+		footer>a{
+			line-height:100px;
+			text-decoration:none;
+			color: #FFFFFF;
+			text-shadow:1px 1px 1px #000;
+		}
+		
+		footer>a:hover{
+			color:red;
+		}
+		
+		
+		
+			
+		</style>
+	</head>
+	<body>
+
+
+		<div class="knowledge">
+			<!--
+				搜索容器
+			-->
+			<p class="search_box">
+				<input placeholder="搜索功能开发中..." type="search" id="search_in">
+				<input type="button" value="搜索" id="btn_search" onclick="getSearchList()">
+			</p>
+			
+			
+			
+			<h3><button onclick="location.href='input.html'" style="cursor:pointer;">知识碎片 · 戳此投稿</button></h3>
+			<hr>
+			<!--提示新内容的布局-->
+			<p id="new_pl">
+				<a onclick="refresh()">有新内容,点击可以刷新查看</a>
+			</p>
+			<!--
+				知识列表容器
+			-->
+			<div class="knowledge_list" id="container">
+				<!--
+					通过xhr获取数据库里的内容，填充到此处
+				-->
+			</div>
+			
+			
+			<!--
+				分页的容器
+			-->
+			<hr>
+			<div class="page_box">
+				<a href="#">返回顶部</a>
+			</div>
+		</div>
+		
+	<footer>
+		<a href="./timeline.html">时间机器</a>
+		<a href="./word.html">单词PK</a>
+		<a href="../download/">下载</a>
+		<a href="https://weibo.com/hejinfriend" title="万码千钧">微博</a>
+		<a href="http://www.douyu.com/mixinan" title="万码千钧Show">斗鱼</a>
+	</footer>
+		
+
+		<script src="common.js"></script>
+
+		<script>
+		
+			$("#new_pl").hide();
+		
+			console.log("init_lastwbid: ");
+			var init_lastwbid = 0;
+			var lastwbid = 0;
+			
+			getlastwbid();
+			
+			setInterval(getlastwbid,6600);
+			
+		
+			function getlastwbid(){
+				jQuery.ajax({
+					url:"lastwbid.php",
+					type:"get",
+					async:true,
+					dataType:'text',
+					success:function(data){
+						if(init_lastwbid == 0){  //打开页面第一次执行
+							init_lastwbid = data;
+							console.log(data);
+						}else{   //不是第一次执行
+							console.log(data);
+							lastwbid = data;
+							console.log("init_lastwbid:"+init_lastwbid);
+							if(data > init_lastwbid){
+								console.log("have new weibo");
+								$("#new_pl").slideDown(1000);
+							}
+						}
+						return data;
+					},
+					error:function(data){
+						
+					}
+				});
+			}
+		
+		
+			function getWeiboList(url, list_container_id){
+				var xhr = createXhr();
+				xhr.open("get", url, true);
+				xhr.onreadystatechange=function(){
+					
+					if(xhr.readyState==4 && xhr.status==200){
+						var list=JSON.parse(xhr.responseText);
+						// 循环遍历js数组，再拼接
+						
+						console.log(list);
+						var html="";
+						for(var i=0;i<list.length;i++){
+						 //取出响应回来数组中的每一条微博
+						   var weibo=list[i];
+
+						   html += "<div class='weibo_item'>";
+						   html += "<span class='uid'>"+weibo.weibo_id+"</span>";
+						   html += "<p class='weibo_text'>"+weibo.weibo_text;
+						   html += "<a style='cursor:pointer;' class='pl_a'> &nbsp;评论(<span class='pinglun'>"+weibo.pinglun_num+"</span>)</a></p>";
+						   html += "<span class='time'>"+weibo.weibo_create_time+"</span>";
+						   html += "</div>";
+
+						}
+						jQuery("#"+list_container_id).html(html);
+					}
+				}
+				
+				xhr.send();
+			}
+			
+			
+			/*
+				加载首页的知识列表
+			*/
+			getWeiboList("list.php", "container");
+			
+			
+			
+			/*
+				加载搜索页的知识列表
+			*/
+			function getSearchList(){
+				var keyword = jQuery("#search_in").val();
+				if(isnull(keyword)){
+					jQuery("#search_in").attr("placeholder","你要搜啥呢？");
+					jQuery("#search_in").val("");
+					return;
+				}
+				var url="search.php?q=";
+				url += keyword;
+				getWeiboList(url, "container");
+				
+				//显示关键字
+				jQuery("#search_in").val("");
+				jQuery("#search_in").attr("placeholder","与"+keyword+"相关的内容");
+			}
+			
+			
+			
+			/*
+				搜索输入框 回车事件
+			*/
+			$('#search_in').on('keypress',function(event){ 
+				if(event.keyCode == 13){  
+					getSearchList();					
+				}  
+			});
+			
+			
+
+			/*
+				点击“评论”超链接，进入评论页
+			*/
+			jQuery("body").on("click","div#container>div.weibo_item a.pl_a",function(){
+				var weibo_id = jQuery(this).parent().prev().text();
+				location.href="pinglun.php?id="+weibo_id;
+			});
+			
+
+			
+			/*
+				刷新
+			*/
+			function refresh(){
+				getWeiboList('list.php', 'container');
+				$('#new_pl').hide();
+				init_lastwbid = 0;
+				console.log("init_lastwbid:"+getlastwbid());
+			}
+			
+			
+			
+			
+			
+			//滚动到底部
+			$(window).scroll(function () {
+				if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+					//alert('bottom!!');
+				}
+			});
+		</script>
+
+	</body>
+</html>
